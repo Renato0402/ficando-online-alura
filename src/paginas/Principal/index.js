@@ -71,6 +71,7 @@ export default function Principal({ navigation }) {
 
         <TextInput
           placeholder="Busque por um usuário"
+          placeholderTextColor={'gray'}
           autoCapitalize="none"
           style={estilos.entrada}
           value={nomeUsuario}

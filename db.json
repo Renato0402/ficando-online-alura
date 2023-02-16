@@ -21,18 +21,6 @@
   ],
   "repos": [
     {
-      "name": "api-escolas3",
-      "data": "1 de jan. de 2021",
-      "postId": 1,
-      "id": 2
-    },
-    {
-      "id": 3,
-      "name": "Arduino_AVES_Telemetria",
-      "data": "1 de jan. de 2021",
-      "postId": 1
-    },
-    {
       "id": 4,
       "name": "bot_piano_tiles",
       "data": "1 de jan. de 2021",
@@ -61,6 +49,12 @@
       "name": "Alura_cursos",
       "data": "1 de jan. de 2021",
       "postId": 1
+    },
+    {
+      "name": "teste",
+      "data": "16 de fevereiro",
+      "postId": 1,
+      "id": 6
     }
   ]
 }

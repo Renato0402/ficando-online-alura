@@ -31,3 +31,25 @@ export async function pegarRepositorioDoUsuarioPorNome(postId, nome) {
     return {};
   }
 }
+
+export async function criarRepositoriosDoUsuario(postId, nome, data) {
+  try {
+    await api.post(`/repos/`, {
+      name: nome,
+      data: data,
+      postId: postId,
+    });
+    return "sucesso";
+  } catch (error) {
+    return "erro";
+  }
+}
+
+export async function deletarRepositorioDoUsuario(id) {
+  try {
+    await api.delete(`/repos/${id}`);
+    return "sucesso";
+  } catch (error) {
+    return "erro";
+  }
+}

@@ -41,6 +41,7 @@ export default function Repositorios({ route, navigation }) {
     <View style={estilos.container}>
       <TextInput
         placeholder="Busque por um repositório"
+        placeholderTextColor={'gray'}
         autoCapitalize="none"
         style={estilos.entrada}
         value={nomeRepo}
@@ -58,7 +59,9 @@ export default function Repositorios({ route, navigation }) {
       </Text>
       <TouchableOpacity
         style={estilos.botao}
-        onPress={() => navigation.navigate("CriarRepositorio")}
+        onPress={() =>
+          navigation.navigate("CriarRepositorio", { id: route.params.id })
+        }
       >
         <Text style={estilos.textoBotao}>Adicionar novo repositório</Text>
       </TouchableOpacity>
