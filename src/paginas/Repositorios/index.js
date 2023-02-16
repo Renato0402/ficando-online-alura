@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, FlatList, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  FlatList,
+  TouchableOpacity,
+  TextInput,
+  SafeAreaView,
+} from "react-native";
 import estilos from "./estilos";
-import { pegarRepositoriosDoUsuario } from "../../servicos/requisicoes/repositorios";
+import {
+  pegarRepositoriosDoUsuario,
+  pegarRepositorioDoUsuarioPorNome,
+} from "../../servicos/requisicoes/repositorios";
 import { useIsFocused } from "@react-navigation/native";
 
 export default function Repositorios({ route, navigation }) {
   const [repo, setRepo] = useState([]);
   const estaNaTela = useIsFocused();
+  const [nomeRepo, setNomeRepo] = useState("");
 
   useEffect(() => {
     async function getRepos() {
@@ -17,8 +28,31 @@ export default function Repositorios({ route, navigation }) {
     getRepos();
   }, [estaNaTela]);
 
+  async function buscarRepositorioPorNome() {
+    const resultado = await pegarRepositorioDoUsuarioPorNome(
+      route?.params.id,
+      nomeRepo
+    );
+    setRepo(resultado);
+    setNomeRepo("");
+  }
+
   return (
     <View style={estilos.container}>
+      <TextInput
+        placeholder="Busque por um repositório"
+        autoCapitalize="none"
+        style={estilos.entrada}
+        value={nomeRepo}
+        onChangeText={(texto) => setNomeRepo(texto)}
+      />
+
+      <TouchableOpacity
+        onPress={buscarRepositorioPorNome}
+        style={estilos.botao}
+      >
+        <Text style={estilos.textoBotao}>Buscar</Text>
+      </TouchableOpacity>
       <Text style={estilos.repositoriosTexto}>
         {repo.length} repositórios criados
       </Text>
@@ -38,13 +72,13 @@ export default function Repositorios({ route, navigation }) {
             style={estilos.repositorio}
             onPress={() => {
               navigation.navigate("InfoRepositorio", {
-                  item
+                item,
               });
             }}
           >
             <Text style={estilos.repositorioNome}>{item.name}</Text>
             <Text style={estilos.repositorioData}>
-              Atualizado em {item.data} {console.log(repo)}
+              Atualizado em {item.data}
             </Text>
           </TouchableOpacity>
         )}

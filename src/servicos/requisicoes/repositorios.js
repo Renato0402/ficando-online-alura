@@ -22,3 +22,12 @@ export async function salvarRepositoriosDoUsuario(postId, nome, data, id) {
     return "erro";
   }
 }
+
+export async function pegarRepositorioDoUsuarioPorNome(postId, nome) {
+  try {
+    const resultado = await api.get(`/repos?postId=${postId}&name=${nome}`);
+    return resultado.data;
+  } catch (error) {
+    return {};
+  }
+}
