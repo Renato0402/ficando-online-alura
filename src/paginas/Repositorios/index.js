@@ -21,7 +21,11 @@ export default function Repositorios({ route, navigation }) {
 
   useEffect(() => {
     async function getRepos() {
-      const resultado = await pegarRepositoriosDoUsuario(route?.params.id);
+      const resultado = await pegarRepositoriosDoUsuario(
+        route?.params.nome,
+        nomeRepo
+      );
+      
       setRepo(resultado);
     }
 
@@ -30,7 +34,7 @@ export default function Repositorios({ route, navigation }) {
 
   async function buscarRepositorioPorNome() {
     const resultado = await pegarRepositorioDoUsuarioPorNome(
-      route?.params.id,
+      route?.params.nome,
       nomeRepo
     );
     setRepo(resultado);
@@ -41,7 +45,7 @@ export default function Repositorios({ route, navigation }) {
     <View style={estilos.container}>
       <TextInput
         placeholder="Busque por um repositório"
-        placeholderTextColor={'gray'}
+        placeholderTextColor={"gray"}
         autoCapitalize="none"
         style={estilos.entrada}
         value={nomeRepo}

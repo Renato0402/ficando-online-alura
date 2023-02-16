@@ -60,7 +60,7 @@ export default function Principal({ navigation }) {
             <TouchableOpacity
               onPress={() =>
                 navigation.navigate("Repositorios", {
-                  id: usuario.id,
+                  nome:usuario.login,
                 })
               }
             >
